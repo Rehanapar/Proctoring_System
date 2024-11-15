@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+ 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+ 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e6f7ff, #d9e6f2); /* Light blue gradient background */
+  background-size: cover;
+background-position: center; /* Light blue gradient background */
+}
+ 
+.msg {
+    color: red;  /* Red color for error messages */
+    text-align: center;  /* Center the text */
+    margin-bottom: 20px;  /* Space below the error message */
+    font-size: 16px;  /* Slightly larger font size for visibility */
+    padding: 10px;  /* Add some padding for better readability */
+   
+   
+  }
+ 
+::selection {
+  background: #4158d0;
+  color: #fff;
+}
+ 
+.border {
+  width: 380px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+}
+ 
+.header {
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  border-radius: 15px 15px 0 0;
+  text-align: center;
+  padding: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+ 
+.word {
+  text-align: center;
+  font-size: 35px;
+  font-weight: 600;
+  color: #fff;
+}
+ 
+h2.word {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 400;
+}
+ 
+form {
+  padding: 20px 30px;
+}
+ 
+.msg {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+ 
+.textbox {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 25px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+ 
+ 
+.textbox:focus,
+.textbox:valid {
+  border-color: #4158d0;
+}
+ 
+ 
+.textbox::placeholder {
+  color: #999;
+}
+ 
+input[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+ 
+input[type="submit"]:active {
+  transform: scale(0.95);
+}
+ 
+.bottom {
+  text-align: center;
+  margin-top: 15px;
+}
+ 
+.bottom a {
+  color: #4158d0;
+  text-decoration: none;
+}
+ 
+.bottom a:hover {
+  text-decoration: underline;
+}
+ 
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+    .alert-container {
+        width: 90%;
+        padding: 25px;
+    }
+ 
+    h1 {
+        font-size: 28px;
+    }
+ 
+    ul li {
+        font-size: 14px;
+    }
+ 
+    button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
