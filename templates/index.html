@@ -1,0 +1,331 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='icon' href="{{ url_for('static', filename='pro.png')}}">
+    <title>Proctoring System</title>
+    <style>
+        /* Background Gradient */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e6f7ff, #d9e6f2); /* Light blue gradient background */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+ 
+        /* Title Styling */
+        h1 {
+            font-size: 36px;
+            color: #1d4e89;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+ 
+        /* Alert Box Styling */
+        .alert {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4747;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+ 
+        .alert.show {
+            display: block; /* Make the alert box visible */
+            opacity: 1;
+            transform: translateY(0); /* Animate the alert */
+        }
+ 
+        /* Video Feed Styling */
+        #video {
+            width: 80%;
+            max-width: 640px;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 5px solid #fff; /* Default border color */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease; /* Transition for border color */
+        }
+ 
+        #video-feed {
+            max-width: 100%;
+            border-radius: 15px;
+        }
+ 
+        /* Hover effect for the video */
+        #video:hover {
+            transform: scale(1.05);
+        }
+ 
+        /* Styling for the recognized speech text */
+        #speech-text {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #333;
+            font-weight: bold;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>Proctoring System</h1>
+    <div class="alert" id="alert-box"></div>
+ 
+   
+    <div id="video">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+ 
+    <div id="speech-text"></div>
+ 
+    <script>
+        let lastAlert = ""; // Variable to track the last alert shown
+        let alertCount = 0; // Counter for the number of alerts
+ 
+        // Function to fetch the latest alert from the server
+        function fetchAlert() {
+            fetch('/get_alert')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data); // Debugging the response
+                    if (data.alert && data.alert !== lastAlert) {
+                        showAlert(data.alert);
+                        lastAlert = data.alert;
+                        alertCount++;
+                        if (alertCount > 5) {
+                            window.location.href = '/too_many_alerts'; // Redirect to too_many_alert.html
+                        }
+                    } else if (!data.alert) {
+                        lastAlert = "";
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching alert:', error); // Catch any fetch errors
+                });
+        }
+ 
+ 
+ 
+        // Function to display the alert in the UI
+        function showAlert(message) {
+            const alertBox = document.getElementById('alert-box');
+            const videoContainer = document.getElementById('video');
+            alertBox.innerText = message;
+            console.log('Showing alert:', message); // Debugging: Check if the alert is being shown
+            alertBox.classList.add('show'); // Add the show class to trigger visibility
+ 
+            // Change the border of the video to red
+            videoContainer.style.borderColor = 'red';
+ 
+            // Hide the alert after 3 seconds and reset video border color
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+                videoContainer.style.borderColor = '#fff'; // Reset the border color to white
+            }, 3000);
+        }
+ 
+        // Fetch alert every 1 second
+        setInterval(fetchAlert, 1000);
+    </script>
+</body>
+</html>
+ 
+
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='icon' href="{{ url_for('static', filename='pro.png') }}">
+    <title>Proctoring System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e6f7ff, #d9e6f2); /* Light blue gradient background */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+ 
+        h1 {
+            font-size: 36px;
+            color: #1d4e89;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+ 
+        .alert {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4747;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-size: 26px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+ 
+        .alert.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+ 
+        #video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+ 
+        #video-feed {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+ 
+        #video:hover {
+            transform: scale(1.05);
+        }
+ 
+        /* Responsive design for tablets */
+        @media screen and (max-width: 768px) {
+            #video {
+                width: 90%;
+                max-width: 500px;
+            }
+        }
+ 
+        /* Responsive design for mobile devices */
+        @media screen and (max-width: 480px) {
+            #video {
+                width: 95%;
+                max-width: 400px;
+            }
+        }
+ 
+    </style>
+</head>
+<body>
+    <h1>Proctoring System</h1>
+    <div class="alert" id="alert-box"></div>
+ 
+    <div id="video">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+    </div>
+ 
+    <div id="speech-text"></div>
+ 
+    <script>
+        let lastAlert = "";
+        let alertCount = 0;
+ 
+        // Function to fetch the latest alert from the server
+        function fetchAlert() {
+            fetch('/get_alert')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Only show the alert if it has changed or is new
+                    if (data.alert && data.alert !== lastAlert) {
+                        showAlert(data.alert);
+                        lastAlert = data.alert;  // Update lastAlert to the new alert
+                        alertCount++;
+                        if (alertCount > 20) {
+                            window.location.href = '/too_many_alerts'; // Redirect if too many alerts
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching alert:', error);
+                });
+        }
+ 
+        // Function to display the alert and make the border blink
+        function showAlert(message) {
+            const alertBox = document.getElementById('alert-box');
+            const videoContainer = document.getElementById('video');
+            alertBox.innerText = message;
+            alertBox.classList.add('show');
+ 
+            // Add a class to make the border blink red
+            videoContainer.classList.add('blink-border');
+ 
+            setTimeout(() => {
+                // Remove the blink effect after 1 second
+                videoContainer.classList.remove('blink-border');
+            }, 1000); // Duration of the blink effect
+ 
+            // Automatically hide the alert after 3 seconds
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 3000);
+        }
+ 
+        // Fetch alert every 1 second
+        setInterval(fetchAlert, 3000);
+    </script>
+ 
+    <style>
+        /* Blinking effect for the video border */
+        .blink-border {
+            animation: blink 1s infinite; /* Makes the border blink */
+        }
+ 
+        /* Define the blinking animation */
+        @keyframes blink {
+            0% {
+                border-color: red;
+            }
+            50% {
+                border-color: white;
+            }
+            100% {
+                border-color: red;
+            }
+        }
+    </style>
+ 
+</body>
+</html>

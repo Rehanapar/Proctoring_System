@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', filename='focus.png') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Alert</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e6f7ff, #d9e6f2); /* Light blue gradient background */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative; /* Ensure child elements can be absolutely positioned */
+        }
+ 
+        h1 {
+            font-size: 36px;
+            color: #1d4e89;
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+ 
+        /* Style for the alert message box */
+        .alert-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85); /* Same light background as the Instructions page */
+            color: #333; /* Darker text for readability */
+            font-size: 20px;
+            border-radius: 12px;
+            z-index: 9999;
+            text-align: center;
+            width: auto;
+            max-width: 400px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Same blur effect as the Instructions */
+            font-family: 'Poppins', sans-serif; /* Same font as Instructions */
+        }
+ 
+        /* Style for the button */
+        button {
+            padding: 15px 30px;
+            background-color: #4e73df; /* Button color */
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+ 
+        button:hover {
+            background-color: #365f9b; /* Darker shade on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+ 
+        button:active {
+            transform: translateY(2px); /* Active effect */
+        }
+ 
+        /* Style for the video feed */
+        #video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 15px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+ 
+        #video-feed {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+ 
+        #video-feed:hover {
+            transform: scale(1.05);
+        }
+ 
+        /* Green Square Bounding Box */
+        .bounding-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px; /* Fixed width for the square */
+            height: 250px; /* Fixed height for the square */
+            border: 3px solid green; /* Green border */
+            box-sizing: border-box;
+            pointer-events: none; /* Allow clicking through the bounding box */
+        }
+ 
+        /* Responsive design for tablets */
+        @media screen and (max-width: 768px) {
+            #video-feed {
+                width: 100%;
+                max-width: 500px;
+            }
+            .bounding-box {
+                width: 200px; /* Adjust bounding box size for smaller screens */
+                height: 200px;
+            }
+        }
+ 
+        /* Responsive design for mobile devices */
+        @media screen and (max-width: 480px) {
+            #video-feed {
+                width: 95%;
+                max-width: 400px;
+            }
+            .bounding-box {
+                width: 150px; /* Adjust bounding box size for mobile */
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert box that appears at the top right -->
+    <div class="alert-box">
+        <p>{{ alert_message }}</p>
+        <form method="POST">
+            <button type="submit">OK</button>
+        </form>
+    </div>
+ 
+    <!-- Video feed section -->
+    <div id="video">
+        <img id="video-feed" src="{{ url_for('focus_feed') }}" alt="Live Video Feed">
+ 
+        <!-- Green Square Bounding Box at the center -->
+        <div class="bounding-box"></div>
+    </div>
+ 
+</body>
+</html>
+ 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alert: Too Many Notifications</title>
+    <link rel='icon' href="{{ url_for('static', filename='alert.png')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<style>
+    /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e6f7ff, #d9e6f2); /* Light blue gradient background */
+    color: #fff;
+}
+
+/* Main Alert Container */
+.alert-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white background */
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center;
+    backdrop-filter: blur(10px); /* Blurs the background */
+}
+
+/* Heading */
+.alert-container h1 {
+    font-size: 36px;
+    color: #1d4e89; /* Dark blue color */
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+}
+
+/* Paragraph Text */
+.alert-container p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Unordered List */
+.alert-container ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+/* List Item */
+.alert-container ul li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 25px;
+}
+
+/* Custom Bullet Style */
+.alert-container ul li:before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    color: #4e73df; /* Blue checkmark */
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Button Style */
+.alert-container button {
+    padding: 15px 30px;
+    background-color: #4e73df;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+.alert-container button:hover {
+    background-color: #365f9b; /* Darker blue */
+    transform: translateY(-3px); /* Subtle lift effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slight shadow expansion */
+}
+
+/* Button Active Effect */
+.alert-container button:active {
+    transform: translateY(2px); /* Button sinks when clicked */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+    .alert-container {
+        width: 90%;
+        padding: 25px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    ul li {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px 25px;
+    }
+}
+
+</style>
+<body>
+    <div class="alert-container">
+        <div class="alert-box">
+            <h1>Too Many Alerts!</h1>
+            <p>You have received too many alerts recently, and it seems like you need to contact support for assistance. Please follow the instructions below to proceed:</p>
+            <ul>
+                <li>Ensure you are following all instructions provided before log in your interview.</li>
+                <li>If you continue to receive alerts, please get in touch with the system administrator.</li>
+                <li>We advise reviewing your account activity to ensure no unusual actions are taking place.</li>
+            </ul>
+            <p>If the issue persists, the administrator will provide further guidance.</p>
+
+            
+    
+
+    <form method="POST">
+        <button type="submit">Acknowledge and Close</button>
+    </form>
+    <!--
+    <button type="button" class="btn" onclick="closeAlert()">Acknowledge and Close</button>
+            <script>
+                function closeAlert() {
+                    // Close the alert container by hiding it
+                    document.querySelector('.alert-container').style.display = 'none';
+                }
+            </script>-->
+
+</body>
+</html>
