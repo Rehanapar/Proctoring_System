@@ -157,7 +157,7 @@ Eye Gaze        Head Pose
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/AI-Proctoring-System.git
+git clone https://github.com/Rehanapar/AI-Proctoring-System.git
 ```
 
 Install the required packages:
